@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        input[type="text"] {
+            width: 30rem;
+            height: 2rem;
+            border: 3px solid #ccc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        input[type="submit"] {
+            width: 31.5rem;
+            height: 3rem;
+            padding: 0.5rem;
+            color: #ffffff;
+            background-color: #000000;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: rgb(58, 52, 52);
+        }
+        
+        .inpf {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .weather {
+            background-color: #fff;
+            padding: 0.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inpf">
+            <h1>Check out the weather</h1>
+            <form method="GET">
+                <lable for="place">
+                    <input type="text" id='place' value="{{request.GET.place}}" name="place" placeholder="Enter your locality"><br>
+                    </label>
+                    <input type="submit" value="Submit">
+            </form>
+        </div><br><br>
+        <div class="weather">
+            {% if weather %}
+            <h2>Weather in {{ weather.region }}</h2>
+            <p>Temperature: {{ weather.temp }}</p>
+            <p>Climate: {{ weather.status }}</p>
+            {% else %}
+            <h1>Enter a valid locality</h1>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
